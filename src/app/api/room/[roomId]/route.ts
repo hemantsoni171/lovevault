@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
 // Correct GET handler for [roomId] dynamic route
 export async function GET(
-  req: Request, 
+  req: NextRequest, 
   { params }: { params: { roomId: string } } // Correct way to access params
 ) {
   const { roomId } = params;
