@@ -2,8 +2,8 @@ import { NextResponse, NextRequest } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
 // Correct GET handler for [roomId] dynamic route
-export async function GET(req: NextRequest, { params }: { params: { roomId: string } }) {
-  const { roomId } = params;  // Access params from context
+export async function GET(req: NextRequest, context: { params: Promise<{ roomId: string }> }) {
+  const { roomId } = await context.params;  // Await params as it is now a Promise
 
   try {
     const room = await prisma.room.findUnique({
@@ -20,8 +20,8 @@ export async function GET(req: NextRequest, { params }: { params: { roomId: stri
   }
 }
 
-export async function POST(request: Request, { params }: { params: { roomId: string } }) {
-  const { roomId } = params;  // Access params from context
+export async function POST(request: Request, context: { params: Promise<{ roomId: string }> }) {
+  const { roomId } = await context.params;  // Await params as it is now a Promise
 
   try {
     // Create the room in the database if it doesn't already exist
