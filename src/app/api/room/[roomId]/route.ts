@@ -1,25 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
-export async function GET(request: NextRequest, { params }: { params: { roomId: string } }) {
-  const { roomId } = params;
+// Correctly typed GET handler for dynamic route in Next.js App Router
+export async function GET(
+  req: NextRequest,
+  context: { params: { roomId: string } }
+) {
+  const roomId = context.params.roomId;
 
   try {
-    // Fetch the room data from the database by Room ID
     const room = await prisma.room.findUnique({
-      where: {
-        id: roomId, // Match the room by the ID passed in the URL
-      },
+      where: { id: roomId },
     });
 
     if (!room) {
-      return NextResponse.json({ message: 'Room not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Room not found' }, { status: 404 });
     }
 
     return NextResponse.json(room);
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: 'Error fetching room data' }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }
 
