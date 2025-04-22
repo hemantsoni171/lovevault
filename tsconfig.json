@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,10 +22,14 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",  // Add this line to define the base directory
+    "baseUrl": ".", // Add this line to define the base directory
     "paths": {
-      "@/*": ["./src/*"],
-      "@prisma/client": ["node_modules/@prisma/client"]  // Add this line to help resolve Prisma client
+      "@/*": [
+        "./src/*"
+      ],
+      "@prisma/client": [
+        "node_modules/@prisma/client"
+      ] // Add this line to help resolve Prisma client
     }
   },
   "include": [
@@ -29,7 +37,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "prisma/**/*"  // Ensure the Prisma folder is included
+    "prisma/**/*" // Ensure the Prisma folder is included
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

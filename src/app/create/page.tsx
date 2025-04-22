@@ -1,5 +1,5 @@
 'use client'; // This tells Next.js that this component will run on the client side.
-
+import React from 'react';
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -29,7 +29,7 @@ export default function CreateRoom() {
       } else {
         setError('Error: Could not join or create the room.');
       }
-    } catch (error) {
+    } catch {
       setError('Error: Something went wrong.');
     } finally {
       setLoading(false);
