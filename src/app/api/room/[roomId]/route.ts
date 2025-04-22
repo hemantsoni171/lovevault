@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
 
-// Correctly typed GET handler for dynamic route in Next.js App Router
+// Correct GET handler for [roomId] dynamic route
 export async function GET(
-  req: NextRequest,
-  context: { params: { roomId: string } }
+  req: Request, 
+  { params }: { params: { roomId: string } } // Correct way to access params
 ) {
-  const roomId = context.params.roomId;
+  const { roomId } = params;
 
   try {
     const room = await prisma.room.findUnique({
