@@ -18,10 +18,18 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",  // Add this line to define the base directory
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@prisma/client": ["node_modules/@prisma/client"]  // Add this line to help resolve Prisma client
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "prisma/**/*"  // Ensure the Prisma folder is included
+  ],
   "exclude": ["node_modules"]
 }
